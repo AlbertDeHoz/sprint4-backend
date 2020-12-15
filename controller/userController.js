@@ -1,6 +1,6 @@
 const {User} = require('../models/');
 const bcrypt = require('bcryptjs');
-const Token = require('../services/token')
+const tokenServices = require('../services/token')
 
 exports.signin = async (req, res, next) => {
     const user =  await User.findOne({ where : { email: req.body.email}});  
@@ -8,7 +8,7 @@ exports.signin = async (req, res, next) => {
         const iguales = bcrypt.compareSync(req.body.password, user.password);
         if(iguales){
             //res.json({success: createToken(user)});
-            const token = Token.encode(user)
+            const token = tokenServices.encode(user)
             res.send({accessToken: token})
         }
         else{
@@ -26,7 +26,6 @@ exports.signup = async (req, res) => {
     const user = await User.create(req.body);
     res.json(user);
 }
-
 
 
 exports.prueba = async (req,res) => {

@@ -3,7 +3,7 @@ const userController = require('../../controller/userController.js');
 const auth = require('../../middleware/auth')
 
 //api/user
-router.post('/signin',userController.signin);
+router.post('/login',userController.signin);
 router.post('/signup',userController.signup);
 router.get('/',auth.checkToken, userController.prueba)
 
