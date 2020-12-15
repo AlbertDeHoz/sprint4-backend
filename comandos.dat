@@ -1,0 +1,2 @@
+npx sequelize migration:generate --name alter-table
+npx sequelize-cli db:migrate
